@@ -1,0 +1,45 @@
+{
+
+  "builders": [{
+    "type": "amazon-ebs",
+    "name": "base-ami",
+    "region": "{{user `region` }}",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "amzn2-ami*",
+        "root-device-type": "ebs"
+      },
+      "owners": [
+        "amazon"
+      ],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "{{user `app_name` }}-{{timestamp}}",
+    "tags": {
+      "Name": "{{user `app_name` }}"
+    }
+  }],
+
+  "provisioners": [       
+    {
+      "type" : "file",
+      "source" : "./test-server",
+      "destination" : "/home/ec2-user"
+    },
+    {
+    "type": "shell",
+    "environment_vars": [
+      "NODE_VERSION={{user `nodeversion`}}"
+    ],
+    "script": "script.sh"
+  }],
+  "post-processors": [{
+    "type": "manifest",
+    "output": "manifest.json",
+    "strip_path": true
+  }]
+
+}
