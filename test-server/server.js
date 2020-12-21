@@ -5,9 +5,9 @@ const app = express();
 
 
 let num = Math.floor(Math.random() * 10000);
-const version = 2 //process.env.VERSION;
+const version = 1 //process.env.VERSION;
 
-app.get('/v2', (request, response) => {
+app.get('/v1', (request, response) => {
   console.log(`From server ${num} Received request for URL: ${request.url} version ${version}`)
   response.writeHead(200);
   response.end(`Hello World! from server ${num} version ${version}`);
