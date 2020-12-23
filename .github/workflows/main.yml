@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Packer build
-        uses: riznob/packer-build-action@v1.1
+        uses: maddusahot/packer_test
         with:
           templateFile: 'packer-template.json'
           varFile: 'settings.json'
