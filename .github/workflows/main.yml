@@ -9,17 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Packer build
-        uses: riznob/packer-build-action@v1.1
-      - name: Packer ami
-        uses: maddusahot/packer_test/ami.json
-      - name: packer 
-        uses: maddusahot/packer_test/manifest.json
-        
-        with:
-          templateFile: 'packer-template.json'
-          varFile: 'settings.json'
-          workingDir: '.'
+
+      # - name: Install sudo package
+      #   run: apt update && apt install sudo      
+
+      - name: install tools
+        id: install
+        working-directory: .github/scripts
+        run: |
+          ./install.sh
+        shell: bash   
+
+      - name: create image
+        id: create
+        working-directory: .github/scripts
+        run: |
+          ./create-server.sh
+        shell: bash                   
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
