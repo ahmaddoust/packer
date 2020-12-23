@@ -19,7 +19,8 @@
     "ssh_username": "ec2-user",
     "ami_name": "{{user `app_name` }}-{{timestamp}}",
     "tags": {
-      "Name": "{{user `app_name` }}"
+      "Name": "{{user `app_name` }}",
+      "ENV": "{{env `ENVIRONMENT` }}"
     }
   }],
 
