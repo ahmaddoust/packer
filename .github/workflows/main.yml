@@ -10,9 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Packer build
-        uses: ./maddusahot/packer_test/manifest.json
+        uses: riznob/packer-build-action@v1.1
       - name: Packer ami
-        uses: ./maddusahot/packer_test/ami.json
+        uses: maddusahot/packer_test/ami.json
+      - name: packer 
+        uses: maddusahot/packer_test/manifest.json
         
         with:
           templateFile: 'packer-template.json'
