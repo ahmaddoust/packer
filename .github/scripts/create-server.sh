@@ -25,4 +25,4 @@ echo "PWD is $PWD"
 ls 
 
 echo 'Installing server'
-PACKER_LOG=1 packer build -var "MY_ENV=$ENVIRONMENT"  -var-file=settings.json ./ami.json 
+#PACKER_LOG=1 packer build -var "MY_ENV=$ENVIRONMENT"  -var-file=settings.json ./ami.json 
