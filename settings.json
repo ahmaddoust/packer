@@ -1,5 +1,9 @@
-{
-  "app_name": "json-server",
-  "region" : "us-east-1",
-  "nodeversion" : "12.18.1"
-}
+
+// node app
+// {
+//   "app_name": "json-server",
+//   "region" : "us-east-1",
+//   "nodeversion" : "12.18.1"
+// }
+
+

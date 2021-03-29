@@ -1,4 +1,8 @@
+
 {
+  "variables": {
+    "MY_ENV": "{{env `ENVIRONMENT`}}"
+  },
 
   "builders": [{
     "type": "amazon-ebs",
@@ -20,7 +24,7 @@
     "ami_name": "{{user `app_name` }}-{{timestamp}}",
     "tags": {
       "Name": "{{user `app_name` }}",
-      "ENV": "{{env `ENVIRONMENT` }}"
+      "ENV": "{{user `MY_ENV` }}" 
     }
   }],
 
@@ -44,3 +48,4 @@
   }]
 
 }
+

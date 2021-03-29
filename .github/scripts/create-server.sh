@@ -8,17 +8,21 @@ echo "GITHUB REF IF $GITHUB_REF"
 
 ENVIRONMENT="${GITHUB_REF#ref/heads/}"
 
-if [[ ENVIRONMENT != "qa" && ENVIRONMENT != "uat" && ENVIRONMENT != "master" ]]; then
+if [[ $ENVIRONMENT != "qa" && $ENVIRONMENT != "uat" && $ENVIRONMENT != "master" ]]; then
   ENVIRONMENT="develop"
 fi
 
 
-if [[ ENVIRONMENT == "master" ]]; then
+if [[ $ENVIRONMENT == "master" ]]; then
   ENVIRONMENT="prod"
 fi
 
 
 echo "env is $ENVIRONMENT"
 
+
+echo "PWD is $PWD"
+ls 
+
 echo 'Installing server'
-# PACKER_LOG=1 packer build -var-file=settings.json ./ami.json
+#PACKER_LOG=1 packer build -var "MY_ENV=$ENVIRONMENT"  -var-file=settings.json ./ami.json 
